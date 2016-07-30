@@ -1,0 +1,36 @@
+{
+  "note": "This is a sample config file. You should change the mockDirectory to a more reasonable path.",
+  "mockDirectory": "/Volumes/DEV/Web/react-boilerplate/internals/mock/",
+  "staticDirectory": "/optional/file/system/path/to/static/directory",
+  "staticPath": "/optional/web/path/to/static/directory",
+  "quiet": false,
+  "port": "5001",
+  "latency": 50,
+  "logRequestHeaders": false,
+  "allowedDomains": ["abc.com"],
+  "allowedHeaders": ["Content-Type", "my-custom-header"],
+  "webServices": {
+    "login": {
+      "verbs": ["post"],
+      "switch": ["userId", "password"],
+      "responses": {
+        "post": {"httpStatus": 401, "mockFile": "sorry.json"}
+      },
+      "switchResponses": {
+        "userIduser1passwordgood": {"httpStatus": 200, "mockFile": "user.json"},
+        "userIdadminpasswordgood": {"httpStatus": 200}
+      }
+    },
+    "logout": {
+        "verbs": ["post"],
+        "responses": {
+            "post": {"httpStatus": 200}
+        }
+    },
+    "users/:userid": {
+        "verbs": ["get"],
+        "switch": "userid",
+        "mockFile": "user.json"
+    }
+  }
+}
